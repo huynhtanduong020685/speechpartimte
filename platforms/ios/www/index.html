@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/ace.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/leaderboard.css" />
+        <link rel="stylesheet" type="text/css" href="css/unit.css" />
+        <link rel="stylesheet" type="text/css" href="css/study.css" />
+        <link rel="stylesheet" type="text/css" href="css/diary.css" />
+        <link rel="stylesheet" type="text/css" href="css/stats.css" />
+        <link rel="stylesheet" type="text/css" href="css/trophy.css" />
+        <link rel="stylesheet" type="text/css" href="css/glyphicon.css" />
+        <link rel="stylesheet" type="text/css" href="jplayer/skin/pink.flag/jplayer.pink.flag.css" />
+        <script src="js/vendor/jquery-1.11.1.min.js"></script>
+        <script src="js/vendor/jquery.touchSwipe.min.js"></script>
+        <script src="js/vendor/fastclick.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/bootstrap-carousel-custom.js"></script>
+        <script src="jplayer/js/jplayer/jquery.jplayer.min.js"></script>
+        <script src="jplayer/js/add-on/jplayer.playlist.min.js"></script>
+        <script src="js/vendor/d3.min.js" charset="utf-8"></script>
+        <meta name="msapplication-tap-highlight" content="no" />
+        <title>3030영어</title>
+    </head>
+    <body>
+        <!-- <button onclick="speaking.recognition();">Start</button>
+        <button onclick="Speech.stop()">Start</button> -->
+        <div id="app" style="overflow:hidden;display:block">
+            <!-- <div class="actionbar">
+                <div class="brand"><img src="img/3030logo_a.gif"/></div>
+            </div> -->
+
+            <!-- Cabinet 시작 -->
+            <div id="cabinet" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:none;">
+                <div class="maintitle">
+                    <div class="maintitletxt">BOOKS</div>
+                </div>
+
+                <div id="main_wrap">
+                    <div id="main_board">
+                        <div id="cabinet_page" class="carousel slide">
+                            <ol id="indi" class="carousel-indicators">
+                            </ol>
+                            <div id="inner_page" class="carousel-inner">
+                            </div>
+                            <!-- <a class="left carousel-control" href="#cabinet_page" data-slide="prev">
+                              <span class="icon-prev"></span>
+                            </a>
+                            <a class="right carousel-control" href="#cabinet_page" data-slide="next">
+                              <span class="icon-next"></span>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cabinet 끝 -->
+
+            <!-- Listening 시작 -->
+            <div id="listening" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:none;">
+                <div class="maintitle">
+                    <div class="maintitletxt">LISTENING</div>
+                </div>
+
+                <div id="listeningmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                    <div style="position:relative; width:100%; text-align:right; padding-right:2%; z-index:999">
+                        <button type="button" class="btn btn-warning btn-sm" style="width:10%" onclick="listening.next();" id="nextbtn">NEXT</button><br/>
+                        <button type="button" class="btn btn-success btn-sm" style="width:10%" id="playbtn" onclick="listening.playMP3();">Play</button><br/>
+                        <button type="button" class="btn btn-danger btn-sm" style="width:10%" onclick="listening.text();" id="nextbtn">Text</button>
+                    </div>
+
+                    <div class="blackboard" style="height:80%">
+                        <table style="position:absolute; top:12%; border:none; padding:0; margin:0; height:95%; width:80%;">
+                            <tr>
+                                <td width="40%" align="right"><img id="pageimg" style="height:100%; margin-left:5%"/></td>
+                                <td width="40%" align="center" valign="middle" class="blackboardtxt" style="background:#fff; color:#000 !important; line-height:102%">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td class="select">영작학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Listening 끝 -->
+
+            <!-- Writing 시작 -->
+            <div id="writing" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:none;">
+                <div class="maintitle">
+                    <div class="maintitletxt">WRITING</div>
+                </div>
+
+                <div id="writingmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                    <button style="position:relative; float:right; padding-right:2%;z-index:999" type="button" class="btn btn-warning btn-sm" onclick="writing.next();">NEXT</button>
+
+                    <div class="blackboard">
+                        <table style="position:absolute; top:0; left:0; border:none; padding:0; margin:0; height:100%; width:100%">
+                            <tr><td align="center" valign="middle">
+                                <div class="blackboardtxt"></div>
+                                <div><input type="text" id="answertxt" name="answertxt" class="answertxt" readonly/></div>
+                            </td></tr>
+                        </table>
+
+                        
+                    </div>
+
+                    <div class="writingnote">
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td class="select">영작학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Writing 끝 -->
+
+            <!-- Speaking 시작 -->
+            <div id="speaking" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">SPEAKING</div>
+                </div>
+
+                <div id="speakingmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                    <div style="width:100%; text-align:right; padding-right:2%; bottom:12%">
+                        <button type="button" class="btn btn-danger btn-sm" id="recbtn" onclick="speaking.recognition();">REC</button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="speaking.next();" id="nextbtn">NEXT</button>
+                    </div>
+
+                    <div class="writingnote">
+                        <div style="position:absolute; width:100%; height:100%; text-align:center; top:10%; display:none" class="maintitletxt" id="actinglisten">
+                            <div style="color:blue;">상대방이 말하고 있습니다. 잘 듣고 자신의 차례를 준비합니다.</div><br/>
+                            <img src="img/study/actinglisten.png" style="margin:0 auto" width="12%">
+                        </div>
+
+                        <div style="position:absolute; width:100%; height:100%; text-align:center; top:10%; display:none" class="maintitletxt" id="actingspeaking">
+                            <div style="color:red;">당신 차례입니다. 아래 한글 문장을 영어로 바꿔 말하세요.</div>
+                        </div>
+
+                        <table border="0" style="position:absolute; width:100%; height:100%">
+                            <tr>
+                                <td id="questionimg" align="right"></td>
+                                <td id="notetxt"><div id="questiontxt" class="answertxt" style="color:#79aae9"><!-- 그녀는 나를 초대하는 것을 좋아한다 하지만 그녀는 그를 초대하는 것은 좋아하지 않는다. --></div><br/>
+                        <div id="answertxt" class="answertxt"><!-- They'd like to accommodate us for the night, but they don't have enough rooms. --></div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="unitcellno white" id="scoreno" align="center"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="voicegraph">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <div class="canvaslayer"><canvas id="canvas" class="wavecanvas"></canvas>
+                            <canvas id="canvas2" class="wavecanvas"></canvas></div>
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td>영작학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td class="select">통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Speaking 끝 -->
+
+            <!-- Speaking2 시작 -->
+            <div id="speaking2" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">SPEAKING</div>
+                </div>
+
+                <div id="speakingmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                    <div style="width:100%; text-align:right; padding-right:2%; bottom:12%; z-index:999 z-index:999">
+                        <button type="button" class="btn btn-danger btn-sm" id="recbtn" onclick="speaking2.recognition();">REC</button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="speaking2.next();" id="nextbtn">NEXT</button>
+                    </div>
+
+                    <div class="writingnote">
+                        <div style="position:absolute; width:100%; height:100%; text-align:center; top:10%; display:none" class="maintitletxt" id="actinglisten">
+                            <div style="color:blue;">상대방이 말하고 있습니다. 잘 듣고 자신의 차례를 준비합니다.</div><br/>
+                            <img src="img/study/actinglisten.png" style="margin:0 auto" width="12%">
+                        </div>
+
+                        <div style="position:absolute; width:100%; height:100%; text-align:center; top:10%; display:none" class="maintitletxt" id="actingspeaking">
+                            <div style="color:red;">당신 차례입니다. 아래 한글 문장을 영어로 바꿔 말하세요.</div>
+                        </div>
+
+                        <table border="0" style="position:absolute; width:100%; height:100%">
+                            <tr>
+                                <td id="questionimg" align="right"></td>
+                                <td id="notetxt"><div id="questiontxt" class="answertxt" style="color:#79aae9"><!-- 그녀는 나를 초대하는 것을 좋아한다 하지만 그녀는 그를 초대하는 것은 좋아하지 않는다. --></div><br/>
+                        <div id="answertxt" class="answertxt"><!-- They'd like to accommodate us for the night, but they don't have enough rooms. --></div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="unitcellno white" id="scoreno" align="center"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="voicegraph">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <center><img src="img/speaking2/micoff.png" width="25%" id="speaking2mic"/></center>
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td>영작학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td class="select">통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Speaking2 끝 -->
+
+            <!-- TTS 시작 -->
+            <div id="tts" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">TTS</div>
+                </div>
+
+                <div id="ttsmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                     <div style="width:100%; text-align:right; padding-right:2%; bottom:12%">
+                        <button type="button" class="btn btn-danger btn-sm" id="recbtn" onclick="tts.speak();">Play</button>
+                    </div>
+
+                    <div class="writingnote">
+                        <table border="0" style="position:absolute; width:100%; height:100%">
+                            <tr>
+                                <td id="questionimg" align="right"></td>
+                                <td id="notetxt" align="center"><input id="ttstext" class="answertxt" style="width:70%;color:#79aae9"><br/>
+                                    <div style="width: 70%; text-align: left; color: white; font-size: 16px;">
+                                    <br/>
+                                    sample)<br/><br/>
+                                    Mom, what's for lunch? <button type="button" class="btn btn-danger btn-sm" onclick="tts.speak2('Mom, what\'s for lunch?');">Play</button><br/>
+                                    I'm so hungry.  <button type="button" class="btn btn-danger btn-sm" onclick="tts.speak2('I’m so hungry.');">Play</button><br/>
+                                    What do you want to eat?  <button type="button" class="btn btn-danger btn-sm" onclick="tts.speak2('What do you want to eat?');">Play</button><br/>
+                                    I want a hamburger and pizza.  <button type="button" class="btn btn-danger btn-sm" onclick="tts.speak2('I want a hamburger and pizza.');">Play</button><br/>
+                                    They are not healthy food.  <button type="button" class="btn btn-danger btn-sm" onclick="tts.speak2('They are not healthy food.');">Play</button><br/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <center><img src="img/tts/tts2.png" width="30%" id="ttsing"/></center>
+
+                    <!-- <div class="voicegraph">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <div class="canvaslayer"><canvas id="canvas" class="wavecanvas"></canvas></div>
+                    </div> -->
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td>영작학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td class="select">통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- TTS 끝 -->
+
+            <!-- Dictation 시작 -->
+            <div id="dictation" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">DICTATION</div>
+                </div>
+
+                <div id="dictationmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                     <div style="position:relative; float:right; padding-right:2%; z-index:999">
+                            <button type="button" class="btn btn-success btn-sm" id="playbtn" onclick="dictation.playMP3();">PLAY</button>
+                            <button type="button" class="btn btn-warning btn-sm" onclick="dictation.next();" id="nextbtn">NEXT</button>
+                        </div>
+
+                    <div class="blackboard">
+                        <table style="position:absolute; top:0; left:0; border:none; padding:0; margin:0; height:100%; width:100%">
+                            <tr><td align="center" valign="middle">
+                                <span id="dicvocaimg"></span><input type="text" id="answertxt" name="answertxt" class="answertxt" readonly/>
+                            </td></tr>
+                        </table>
+
+                       
+                        
+                    </div>
+
+                    <div class="voicegraph">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <div class="canvaslayer"><canvas id="canvas" class="wavecanvas"></canvas></div>
+                        
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td>영작학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>통역학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td class="select">받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Dictation 끝 -->
+
+            <!-- POPQUIZ 시작 -->
+            <div id="popquiz" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">POPQUIZ</div>
+                </div>
+
+                <div id="popquizmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                    <div style="position:relative; float:right; padding-right:2%; z-index:999">
+                        <button type="button" class="btn btn-warning btn-sm" onclick="popquiz.next();" id="nextbtn">NEXT</button>
+                    </div>
+
+                    <div class="blackboard" style="position:relative;">
+                        <table style="position:absolute; top:0; left:0; padding:0; margin:0; height:100%; width:100%; color:#fff;" class="blackboardtxt" id="multiplechoice">
+                            <tr>
+                                <td align="left" valign="middle" width="50%" style="padding-left:10%"><div id="choice0"><span class="label label-success">1</span> <span class="choicetxt"></span></div></td>
+                                <td align="left" valign="middle" width="50%" style="padding-left:10%"><div id="choice1"><span class="label label-success">2</span> <span class="choicetxt"></span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="middle" style="padding-left:10%"><div id="choice2"><span class="label label-success">3</span> <span class="choicetxt"></span></div></td>
+                                <td align="left" valign="middle" style="padding-left:10%"><div id="choice3"><span class="label label-success">4</span> <span class="choicetxt"></span></div></td>
+                            </tr>
+                        </table>
+
+                        <table style="position:absolute; top:0; left:0; border:none; padding:0; margin:0; height:100%; width:100%; visibility:hidden" id="shortanswer">
+                            <tr><td align="center" valign="middle">
+                                <span id="dicvocaimg" class="blackboardtxt"></span><input type="text" id="answertxt" name="answertxt" class="answertxt" readonly/>
+                            </td></tr>
+                        </table>
+
+                        <button style="position:absolute; right:1%; top:5%" type="button" class="btn btn-warning btn-sm" onclick="popquiz.next();" id="nextbtntop">NEXT</button>
+                    </div>
+
+                    <div class="writingnote" style="height:50%">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <div id="questiontxt" class="blackboardtxt" style="top:25%;"><!-- 그녀는 나를 초대하는 것을 좋아한다 하지만 그녀는 그를 초대하는 것은 좋아하지 않는다. --></div>
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td>영작학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>통역학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td class="select">Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- POPQUIZ 끝 -->
+
+            <!-- shadow start -->
+            <div id="shadow" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">SHADOW READING</div>
+                </div>
+
+                <div id="shadowmain">
+                    <div style="width:100%; text-align:right; padding-right:2%;margin-top:1%; z-index:999">
+                        <button type="button" class="btn btn-danger btn-sm" id="recbtn" onclick="shadow.startStudy();">REC</button>
+                        <!-- <button type="button" class="btn btn-warning btn-sm" onclick="speaking2.next();" id="nextbtn">NEXT</button> -->
+                    </div>
+                    <br/>
+
+                    <div class="writingnote">
+                        <table border="0" style="position:absolute; width:100%; height:100%;">
+                            <tr>
+                                <td style="width:30%" align="center">
+                                    <table style="width:100%">
+                                        <tr><td align="center" class="answertxt white" style="line-height:100%">Setences<br/>Spoken</td></tr>
+                                        <tr><td align="center" class="unitcellno white" id="shadowboard1">0</td></tr>
+                                        <tr><td align="center" class="answertxt white" style="padding-top:6%;line-height:100%">Sentences<br/>Left</td></tr>
+                                        <tr><td align="center" class="unitcellno white" id="shadowboard2">0</td></tr>
+                                        <tr><td align="center" class="answertxt white" style="padding-top:6%;line-height:100%">Speaking<br/>Accuracy</td></tr>
+                                        <tr><td align="center" class="unitcellno white" id="shadowboard3">0</td></tr>
+                                    </table>
+                                </td>
+                                <td id="notetxt" align="left" style="width:70%"><div id="questiontxt" class="answertxt" style="width:80%; text-align:left"><!-- 그녀는 나를 초대하는 것을 좋아한다 하지만 그녀는 그를 초대하는 것은 좋아하지 않는다. --></div><br/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="voicegraph">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <div class="canvaslayer"><canvas id="canvas" class="wavecanvas"></canvas>
+                            <canvas id="canvas2" class="wavecanvas"></canvas></div>
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td>영작학습</td>
+                                <td><img src="img/study/complete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td class="select">통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- shadow end -->
+
+            <!-- 문장퀴즈 시작 -->
+            <div id="sentencequiz" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:none;">
+                <div class="maintitle">
+                    <div class="maintitletxt">Sentence Quiz</div>
+                </div>
+
+                <div id="sentencequizmain">
+                    <div class="sentences" style="margin-top:1%">Sentences <span id="labelsentences"></span></div>
+
+                    <button style="position:relative; float:right; padding-right:2%;z-index:999" type="button" class="btn btn-warning btn-sm" onclick="sentencequiz.next();">NEXT</button>
+
+                    <div class="blackboard">
+                        <table style="position:absolute; top:0; left:0; border:none; padding:0; margin:0; height:100%; width:100%">
+                            <tr><td align="center" valign="middle">
+                                <div class="blackboardtxt"></div>
+                            </td></tr>
+                        </table>
+                    </div>
+
+                    <div class="voicegraph">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:100%">
+                            <p style="height:20%; border-top: solid #565a66 1px; margin:0; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                            <p style="height:20%; border-bottom: solid #565a66 1px; margin:0"/>
+                        </div>
+
+                        <div style="position:absolute; top:0; width:100%; z-index:100">
+                            <img src="img/study/O.png" width="10%" id="sentencequizresult" style="margin:auto;"/>
+                        </div>
+
+                        <div style="text-align:center" id="options">
+                        </div>
+                    </div>
+
+                    <div class="bottomstatus">
+                        <table align="center">
+                            <tr>
+                                <td class="select">영작학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>통역학습</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>받아쓰기</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                                <td style="color:#cccccc">&nbsp;|&nbsp;&nbsp;</td>
+                                <td>Pop Quiz</td>
+                                <td><img src="img/study/incomplete.png"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- 문장퀴즈 끝 -->
+
+
+            <div id="ebook" style="position:relative; top:0%; height:100%; width:100%; overflow:hidden; display:block;">
+                <div class="maintitle">
+                    <div class="maintitletxt">E-BOOK READER</div>
+                </div>
+        
+                <iframe id="bookiframe" name="ebookiframe" width="100%" height="96%" style="position:absolute; top:4%;" frameborder="0"></iframe>
+            </div>
+
+            <!-- 로딩 시작 -->
+            <div id="loading" style="position:absolute; top:0; left:0; z-index:1000; height:100%; width:100%; text-align:center; background-color:#fff; display:block">
+                <p style="height:17%">&nbsp;</p>
+                <img id="loadinglogo" src="img/loading/logo.png" style="width:23%;"/>
+                <p style="height:1%">&nbsp;</p>
+                <div style="width:70%; height:3%; margin:auto; float:left">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                </div>
+                </div>
+                <div id="progressparent" style="height:3%; margin:auto; float:left;">&nbsp;&nbsp;<span id="progresstitle">0%</span></div>
+                <p style="height:1%; clear: both;">&nbsp;</p>
+                <div class="col-md-12" style="padding:0; margin:0 auto; color:#949494"><h3>LOADING</h3></div>
+                <div style="position:absolute;bottom:10%;width:100%;color:#c2c2c2">
+                    <img id="loadingdesc" style="width:25%"/>
+                    <br/><br/>
+                    <h4>English Train 7</h4></div>
+            </div>
+            <!-- 로딩 끝 -->
+
+            <!-- 가상 키보드 -->
+            <div id="keyboard">
+            </div>
+            <!-- 가상 키보드 끝 -->
+
+            <!-- 모달 -->
+        </div>
+
+        <div class="blackmodal">
+            &nbsp;
+        </div>
+
+        <!-- <button onclick="recognizeSpeech();">음성인식 테스트</button>
+        <button onclick="rec();">녹음 테스트 (5초)</button>
+        <button onclick="rec2();">녹음 테스트2 (5초)</button>
+        <button onclick="play();">녹음 플레이</button> -->
+        <!-- <button onclick="getSupportedLanguages();">Get Supported Languages</button> -->
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/media.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
+        <script type="text/javascript" src="js/leftmenu.js"></script>
+        <script type="text/javascript" src="js/cabinet.js"></script>
+        <script type="text/javascript" src="js/unit.js"></script>
+        <script type="text/javascript" src="js/study.js"></script>
+        <script type="text/javascript" src="js/diary.js"></script>
+        <script type="text/javascript" src="js/stats.js"></script>
+        <script type="text/javascript" src="js/trophy.js"></script>
+        <script type="text/javascript" src="js/getscore.js"></script>
+        <script type="text/javascript" src="js/keyboard.js"></script>
+        <script type="text/javascript">
+        function checktest(text) {
+            alert(text);
+        }
+            var nowpage="cabinet";
+            var servername = "http://www.3030class.com";
+            var books = new Array(); 
+            var deviceready = false;
+            var selbookid='1-1';
+            var selday=12;
+            var nowloadingrate=0;
+            var bookTitles={'K-1':'Alphabet Master-1','K-2':'Alphabet Master-2','K-3':'Phonics King-1','K-4':'Phonics King-2','K-5':'Phonics King-3','K-6':'Phonics King-4','1-1':'DoDoDo English-1','1-2':'DoDoDo English-2','1-3':'DoDoDo English-3','1-4':'DoDoDo English-4','2-1':'Do Dream English-1','2-2':'Do Dream English-2','2-3':'Do Dream English-3','2-4':'Do Dream English-4','3-1':'Fun Fun English-1','3-2':'Fun Fun English-2','3-3':'Fun Fun English-3','3-4':'Fun Fun English-4','4-1':'Speak Up English-1','4-2':'Speak Up English-2','4-3':'Speak Up English-3','4-4':'Speak Up English-4','5-1':'Five Star English-1','5-2':'Five Star English-2','5-3':'Five Star English-3','5-4':'Five Star English-4','6-1':'AnySpeak English-1','6-2':'AnySpeak English-2','6-3':'AnySpeak English-3','6-4':'AnySpeak English-4','T-1':'Tenses-1','T-2':'Tenses-2','T-3':'Tenses-3','T-4':'Tenses-4','T-5':'Tenses-5','T-6':'Tenses-6','A-1':'Acting Star-1','A-2':'Acting Star-2','A-3':'Acting Star-3','A-4':'Acting Star-4','A-5':'Acting Star-5','A-6':'Acting Star-6','S-1':'Super Star English-1','S-2':'Super Star English-2','S-3':'Super Star English-3','S-4':'Super Star English-4','S-5':'Super Star English-5','S-6':'Super Star English-6','D-1':'Dream In English-1','D-2':'Dream In English-2','D-3':'Dream In English-3','D-4':'Dream In English-4','D-5':'Dream In English-5','D-6':'Dream In English-6','L-1':'Level 1','L-2':'Level 2','L-3':'Level 3','L-4':'Level 4','L-11':'알파벳','L-12':'파닉스'};
+
+            window.localStorage.setItem('ls_userid','');
+            app.initialize();
+
+            keyboard.init();
+            //initLeftRanking();
+            //initUnitCell();
+            //popquiz.init();
+            setPage('cabinet');
+            // setPage('shadow');
+
+            $('#loginid').on('keypress',function(e){
+                //console.log('keypress: '+e.keyCode);
+                if (e.keyCode != 13) {
+                    console.log('is not an enter key');
+                }
+                else {
+                    console.log('is an enter key going to submit');
+                    Fling.poo();
+                    return false;
+                }  
+          });
+
+            function getServer() {
+                return servername;
+            }
+
+            function recognizeSpeech() {
+                var maxMatches = 5;
+                var promptString = "Speak now"; // optional
+                var language = "en-US";                     // optional
+                window.plugins.speechrecognizer.startRecognize(function(result){
+                    //mediaRec.stopRecord();
+                    alert(result);
+                    // var mediaPlay = new Media(src, onSuccess, onError);
+                    // mediaPlay.play();
+                }, function(errorMessage){
+                    alert("Error message: " + errorMessage);
+                }, maxMatches, promptString, language);
+
+                //setTimeout(function() {alert('start');mediaRec.startRecord();}, 2000);
+            }
+
+            $(function() {
+                //fastclick init
+                var attachFastClick = Origami.fastclick;
+                attachFastClick(document.body);
+            });
+
+//             var svg = d3.select("#canvaslayer")
+//     .append("svg")
+//     .attr("width", 600)
+//     .attr("height", 500);
+
+// var points = [
+//   [0, 0],
+//   [0, 0],
+//   [110, 500],
+//   [210, 100],
+//   [310, 300],
+//   [410, 50],
+//   [510, 500],
+//   [600, 0]
+// ];
+
+// var methods = [ //interpolation methods
+//     'linear',
+//     'step-before',
+//     'step-after',
+//     'basis',
+//     'basis-open',
+//     'basis-closed',
+//     'bundle',
+//     'cardinal',
+//     'cardinal-open',
+//     'cardinal-closed',
+//     'monotone'
+//     ];
+        </script>
+
+<style type="text/css">
+    .poly {
+        stroke: steelblue;
+        stroke-width: 10px;
+    }
+
+    input {
+        text-align: center;
+    }
+</style>
+    </body>
+</html>

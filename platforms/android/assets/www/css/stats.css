@@ -1,0 +1,194 @@
+#stats .btn-white {
+	border:none;
+	background-color: rgba(0,0,0,0) !important;
+}
+
+#statsnote {
+	position:absolute;
+	height:50%;
+	width:100%;
+	top:4%;
+	background-color: #fff;
+	display: none;
+	z-index: 101;
+}
+
+#statscalendar
+,#statsuserinfo
+ {
+	border-collapse:separate !important;
+}
+
+#statscalendar td
+,#statsuserinfo td {
+	border-right:1px solid #d4d4d4; 
+	border-bottom:1px solid #d4d4d4;
+}
+
+/*#statsuserinfo td {
+	padding: 4% 0;
+}*/
+
+#statscalendar td:last-child {
+	border-right:1px solid #4a4a4a !important;
+}
+
+#statscalendar td:first-child {
+	border-left:1px solid #4a4a4a !important;
+}
+
+#statscalendar tr:last-child td {
+	border-bottom:1px solid #4a4a4a !important;
+}
+
+#statscalendar tr:first-child td:first-child {
+    border-top-left-radius:5px !important;
+}
+
+#statscalendar tr:first-child td:last-child {
+    border-top-right-radius:5px !important;
+}
+
+#statscalendar tr:last-child td:first-child {    
+	border-bottom-left-radius:5px !important;
+}
+
+#statscalendar tr:last-child td:last-child {
+    border-bottom-right-radius:5px !important;
+}
+
+#statsuserinfo tr td:first-child {
+    background-color: #4a4a4a;
+    color:#fff;
+}
+
+#statsuserinfo tr td:last-child {
+    background-color: #f0f0f0;
+    color:#000;
+}
+
+#statsuserinfo tr:first-child td:first-child {
+    border-top-left-radius:5px !important;
+}
+
+#statsuserinfo tr:first-child td:last-child {
+    border-top-right-radius:5px !important;
+}
+
+#statsuserinfo tr:last-child td:first-child {    
+	border-bottom-left-radius:5px !important;
+}
+
+#statsuserinfo tr:last-child td:last-child {
+    border-bottom-right-radius:5px !important;
+}
+
+.statsuserinfo div {
+	width:100%;
+	text-align: center;
+}
+
+.statscell {
+	position: relative;
+	width:100%;
+	height:100%;
+	text-align: center;
+}
+
+.statscell .dayno {
+	position: absolute;
+	left:0px;
+	top:0px;
+	color:#666;
+	width:25%;
+	text-align: center;
+}
+
+.statsdaycnt {
+	position: absolute;
+	bottom:-2px;
+	right:2px;
+	color:#7da924;
+}
+
+.statsicon {
+	position: absolute;
+	width:20%;
+	padding:2%;
+	right:0px;
+	bottom:0px;
+}
+
+.noticeicon {
+	position: absolute;
+	width:24%;
+	padding:2%;
+	left:0px;
+	bottom:0px;
+}
+
+@media screen and (max-width: 800px) {
+	#statscalendarmonth{
+		font-size:1.3em;
+	}
+
+	#lhtab .midsize {
+		font-size:1.3em !important;
+		padding: 1px 5px;
+	}
+
+	.statsuserinfo{
+		font-size:.7em;
+	}
+
+	#statschange {
+		font-size:12px;
+		height:18px;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	#statscalendarmonth{
+		font-size:3em;
+	}
+
+	#statscalendaryear{
+		font-size:1.5em;
+	}
+
+	.dayno
+	,.statsdaycnt{
+		font-size:1.5em;
+	}
+
+	.statsuserinfo{
+		font-size:1.1em;
+	}
+
+	.midsize {
+		font-size:2em !important;
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	#statscalendarmonth{
+		font-size:4em;
+	}
+
+	#statscalendaryear{
+		font-size:2em;
+	}
+
+	.dayno
+	,.statsdaycnt{
+		font-size:2em;
+	}
+
+	.statsuserinfo{
+		font-size:1.5em;
+	}
+
+	.midsize {
+		font-size:2.5em !important;
+	}
+}

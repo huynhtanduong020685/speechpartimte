@@ -1,0 +1,44 @@
+#leftleaderboard {
+	position:relative;
+}
+
+.lboardrow {
+	clear:both;
+	list-style:none;
+	padding:10px 0;
+	margin:0;
+	width:100%;
+}
+
+.lboardrow li {
+	float:left;
+	/*height:5%;*/
+	font-weight:bolder;
+	color:#282828;
+}
+
+.llno {
+	width:10%;
+	text-align:left;
+}
+
+.llpic {
+	width:20%;
+	text-align:center;
+}
+
+.llmark {
+	width:10%;
+	text-align:center;
+}
+
+
+.llname {
+	width:35%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.llscore {
+	padding-left:0px;
+}

@@ -1,0 +1,159 @@
+#bookscr {
+	padding: 1% .4%;
+	width: 20%;
+	height:95%;
+	float:left;
+	position: relative;
+}
+
+#bookscrframe {
+	float:right;
+	border: 2px solid #dddddd;
+	width:80%;
+	height:100%;
+	text-align:center;
+	padding:2% 0 0 0;
+}
+
+#bookscrframe >img {
+	width:60%;
+	height:25%;
+}
+
+#bookscrframe>a>img {
+	margin:auto;
+	width:80%;
+	margin-top:2%;
+}
+
+#unitmode {
+	height:25%;
+}
+
+#unitmode>a>img {
+	float:right;
+	width:80%;
+	height:98%;
+	margin-top:2%;
+}
+
+#unitmp3player {
+	background-color: #f8f8f8;
+	float:left;
+	width:75.2%;
+	/*height:92%;*/
+	margin-top:1%;
+	border-radius:2em;
+	box-shadow: 2px 2px 2px #999;
+}
+
+#playerdisplay {
+	background-color: #afaeae;
+	width:92%;
+	height:63%;
+	border-radius:2em;
+	margin:4%;
+	border:1px solid #969696;
+	overflow: hidden;
+}
+
+#playlist {
+	background-color: #7e7e7e;
+}
+
+.track {
+	width:100%;
+	text-align: center;
+	color: #afaeae;
+}
+
+.playercell {
+	width:20%;
+	height:20%;
+	background-color: #f8f8f8;
+	border-right:1px solid #afaeae;
+	border-bottom:1px solid #afaeae;
+	text-align: center;
+}
+
+.selplayer {
+	background-color: #dadada !important;
+}
+
+.seltrack {
+	background-color: #504f4f !important;
+}
+
+#unitcells
+,#unitmp3cells {
+	float:left;
+	width:80%;
+	height:100%;
+	padding: 1% 0;
+}
+
+.unitcell
+,.unitmp3cell {
+	position: relative;
+	float:left;
+	width:18.8%;
+	height:23.7%;
+	/*background-color: #a7d052;
+	border-right:solid 2px #8bb040;
+	border-bottom:solid 2px #8bb040;*/
+	background: url(../img/unit/cellbg.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+.unitmp3cd {
+	position:absolute; top:0; left:0; width:55%; padding:5%;
+}
+
+.unitmp3days {
+	position:absolute; bottom:2%; right:2%;
+}
+
+.unitcellno {
+	position: relative;
+	font-weight: bolder;
+	color: #79b108;
+	text-shadow:-1px 0px 3px hsla(0,0%,0%,0.5);
+	line-height:100%;
+	height:60%;
+}
+
+.unitcellstatus {
+	position: absolute;
+	width:100%;
+	height:20%;
+	background-color: #79b108;
+	bottom:0;
+}
+
+.unitcellday {
+	position: relative;
+	height:20%;
+	color: #79b108;
+	font-weight: bolder;
+}
+
+.unitcellcheck {
+	position: absolute !important;
+	right:5px;
+	top:5px;
+	color: #79b108;
+}
+
+.white {
+	color:#fff;
+}
+
+.unitcellstatuscell {
+	background-color: #ffd200;
+	width:25%;
+	height:100%;
+	border: 2px outset #ee0;
+	float:left;
+}

@@ -1,0 +1,534 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+   /*-webkit-user-select: none;*/
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#2f333c;
+    /*background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;*/
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    /*text-transform:uppercase;*/
+    width:100%;
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+ol {
+    padding:0;
+    margin:0;
+}
+
+/*액션바*/
+.actionbar {
+    position:absolute;
+    z-index:10;
+    background-color:#22242c;
+    width:100%;
+    height:8%;
+    border-bottom: 2px solid #f2f2f2;
+    box-shadow: 0px 0px 10px #888888;
+}
+
+.brand {
+    width:300px;
+    display: table-cell;
+    vertical-align: middle;
+    padding:0;
+    margin:0;
+    border: none;
+}
+/*액션바 끝*/
+
+/* 로그인 */
+#login_input_modal_page {}
+#login_input_wrap {margin:5% auto; width:50%; background:#888;}
+#login_logo {width:100%; height:5%; text-align: center; background:#fff;}
+#login_logo > img {width:auto;}
+.login_input_col {margin:5% 0; width:100%; font-weight:bold; color:#fff;}
+#login_input_col01 {}
+#login_input_col02 {}
+.login_input { color:#000; width:50%; margin-left:2%; border-radius:0.2em; border:0.2em solid #fff; font-weight:bold;}
+#login_input_label_wrap {width:100%;}
+.login_label {border:none; float:left; width:28%; padding-top:0.4em; padding-bottom:0.4em; font-weight:bold; background:#e11; border-radius:0.5em; color:#fff; box-shadow:0px 0px 10px 2px rgba(0,0,0,0.2) inset;}
+#login_submit_label {margin-left:20%;}
+#login_cancel_label {margin-left:2%;}
+#login_text01 {clear:both; width:100%; line-height:2em; font-weight:bold; color:#fff;}
+#login_footer { width:100%; line-height:35px; background:#e11; font-weight:bold; color:#fff;}
+/*로그인 끝*/
+
+/*Cabinet*/
+#cabinet div {
+    padding:0;
+    margin:0;
+}
+#main_wrap {position:relative; margin-top:1% !important; height:100%;}
+/* 메인 */
+#main_board {position:relative; padding:0; height:100%;}
+/* 캐비넷 */
+#cabinet_page {position:absolute; width:100%;}
+.carousel-indicators {position:absolute; top:3%;}
+.carousel-indicators > li {background:url("../img/cabinet/page_button_off.png"); background-repeat: no-repeat;}
+.carousel-indicators > .active {
+    width:11px;
+    height:11px;
+    background:url("../img/cabinet/page_button_on.png"); background-repeat: no-repeat;}
+#inner_page {
+    margin-top:15% !important;
+}
+.item_page {height:100%;}
+.item_page > p {margin-top:-1.5%;}
+.item_page > div {clear:both; z-index:50; margin-left: 4.5%; margin-top: 0%;}
+
+.booksline {
+    /*padding:0 2% !important;*/
+    text-align: center;
+}
+.books {
+    border:solid 1px #333333; margin-right:5%; padding:0px; box-shadow:3px 0px 3px hsla(0,0%,0%,0.5);
+}
+.booksblank {margin-left:1.5%; margin-right:1.5%; padding:5px;}
+
+.book_plus { margin-right:5%; padding:0px; margin-top:-5px; box-shadow:none; opacity:0.5;}
+.book_plus:hover {opacity:0.7;}
+#item_bar01,#item_bar02{
+    width:100%;
+/*position:absolute; left:4%; top:0; width:100%;*/
+}
+.carousel-control {opacity:0.1; height:100%; width:5%;}
+.carousel-control:hover {opacity:0.5;}
+
+.carousel-inner {
+    overflow: visible;
+}
+.carousel-indicators li {
+    border:none;
+}
+/*Cabinet END*/
+
+/*common*/
+.maintitle {
+    display: table;
+    height:4%;
+    width:100%;
+    background-color:#22242c;
+    /*border-top: 2px solid #c9c9c9;   
+    border-bottom: 2px solid #c9c9c9;*/
+    box-shadow: 0px 0px 5px #888888;
+}
+
+.maintitletxt {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 2% !important;
+    font-weight: bolder;
+    color: #bbbfcb;
+}
+/*common END*/
+
+.progress {
+    background-color: #868686;
+    border-radius: 40px;
+    height:100%; width:58%;
+    float:right;
+}
+
+.progress-bar {
+    line-height: 0px;
+    background-color: #ccff33;
+    transition: width .01s ease;
+    -webkit-transition: width .01s ease;
+}
+
+h3
+,h4 {
+    padding:0;
+    margin:0;
+}
+
+.leftbutton {
+    font-weight: none;
+}
+
+hr {
+    margin: 15% 0;
+}
+
+.singletab {
+    background-color:#4a4a4a !important; 
+    color:#fff !important; 
+    border:#4a4a4a !important; 
+    border-radius:20px !important;
+}
+
+.table-curved {
+    border-collapse:separate;
+    border: solid #ccc 1px;
+    border-radius: 10px !important;
+}
+
+.table-curved tr:first-child td:first-child {
+    border-top-left-radius: 10px !important;    
+}
+.table-curved tr:first-child td:last-child {
+    border-top-right-radius: 10px !important;      
+}
+.table-curved tr:last-child td:first-child {
+    border-bottom-left-radius: 10px !important;    
+}
+.table-curved tr:last-child td:last-child
+{
+    border-bottom-right-radius: 10px !important;   
+}
+
+#information .th {
+    background-color: #d4d4d4;
+    text-align: justify;
+    text-align: center !important;
+}
+
+.leftLightOn {
+    /*box-shadow: 0px 0px 15px 4px red;*/
+    -webkit-filter: drop-shadow(0px 0px 8px red);
+    filter: drop-shadow(0px 0px 8px red);
+}
+
+/*씨리얼 입력*/
+            #serial_input_modal_page {background:rgba(10,10,10,0.8);}
+                #serial_input_wrap {margin:5% auto; border:2px dotted #fff; border-radius:8px; width:60%; padding:1%; background:rgba(255,255,255,0.3);}
+                    #serial_input_text01 {margin:0 auto; margin-top:5%; width:100%;  font-weight:bold; color:#fff; text-shadow:1px 1px 3px #000;}
+                    #serial_input_text02 {margin:0 auto; margin-top:5%; width:90%; font-weight:bold; color:#fff;}
+                    #serial_input {margin-left:5%;  width:90%; border-radius:0.2em;  border:0.2em solid #fff; font-weight:bold;}
+                    #serial_submit_label {margin-left:40%; margin-top:3%; margin-bottom:3%; width:20%; border:none; border-radius:0.2em; font-weight:bold; line-height:1.8em; background:#e11; color:#fff;}
+
+
+
+    #level_input_modal_page {background:rgba(10,10,10,0.8);}
+    #level_input_wrap {margin:5% auto; border:2px dotted #fff; border-radius:8px; width:60%; padding:1%; background:rgba(255,255,255,0.3);}
+    .level_input_text02 {font-weight:bold; color:#fff;}
+    .level_input {width:85%; border-radius:0.2em;  border:0.2em solid #fff; font-weight:bold;}
+    #level_submit_label {margin-top:3%; margin-bottom:3%; width:40%; border:none; border-radius:0.2em; font-weight:bold; line-height:1.8em; background:#e11; color:#fff;}
+
+@media screen and (max-width: 800px) {
+    body, h3 {
+        font-size:1.2em;
+    }
+
+    h4 {
+        font-size:1em;
+    }
+    
+    #progresstitle {
+        font-size:.5em;
+        color: #494949;
+    }
+
+    #progressparent {
+        line-height: .5em;
+    }
+
+    #login_text01                    
+    ,#login_footer
+    {
+        font-size:.3em;
+    }
+
+    .leftbutton
+    {
+        font-size:.3em;
+    }
+
+    .content {
+        font-size:8px;
+    }
+
+    .maintitletxt,
+    .sentences,
+    .singletab {
+        font-size:.5em;
+    }
+
+    .unitcellno {
+        font-size:1.2em;
+    }
+
+    div.jp-audio {
+        font-size:.6em !important;
+    }
+    .jp-current-time, .jp-duration {
+        font-size:.4em !important; 
+    }
+    .jp-progress {
+        height:8px !important;
+    }
+
+    .carousel-indicators li {
+        width:7px;
+        height:7px;
+    }
+
+    .carousel-indicators .active {
+        width:8px;
+        height:8px;
+    }
+
+    .unitcellno {
+        font-size:3.2em;
+    }
+
+    .unitcellday {
+        font-size: 1em;
+    }
+
+    .playercellno {
+        font-size:2em;
+    }
+
+    .playercellday {
+        font-size: 1em;
+    }
+
+    .unitcellcheck {
+        font-size: .5em;
+    }
+
+    .singletab {
+        padding:1px 5px !important;
+    }
+
+    .tab-content {
+        padding:5px;
+    }
+
+    .table td,
+    .table th {
+        padding:2px !important;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    h3 {
+        font-size: 2em;
+    }
+
+    h4 {
+        font-size:1.6em;
+    }
+
+    #progresstitle {
+        font-size:1.6em;
+        color: #494949;
+    }
+
+    #progressparent {
+        line-height: 1.6em;
+    }
+
+    #login_input_modal_page
+    ,#serial_input_modal_page
+    ,#level_input_modal_page {
+        font-size:2em;
+    }
+
+    #login_text01                    
+    ,#login_footer
+    {
+        font-size:.6em;
+    }
+
+    .leftbutton
+    {
+        font-size:1.2em;
+    }
+
+    .content {
+        font-size:1.1em;
+    }
+
+    .maintitletxt,
+    .sentences,
+    .singletab {
+        font-size:1em;
+    }
+
+    .lboardrow li {
+        line-height:35px;
+    }
+
+    .unitcellno {
+        font-size:6em;
+    }
+
+    .unitcellday {
+        font-size: 1.7em;
+    }
+
+    .playercellno {
+        font-size:3em;
+    }
+
+    .playercellday {
+        font-size: 1.7em;
+    }
+
+    .unitcellcheck {
+        font-size: .8em;
+    }
+
+    div.jp-audio {
+        font-size:1.8em !important;
+    }
+}
+
+
+@media screen and (min-width: 1025px) {
+    h3 {
+        font-size:2.5em;
+    }
+
+    h4 {
+        font-size:2em;
+        line-height: 100%;
+    }
+
+    #progresstitle {
+        font-size:2em;
+        color: #494949;
+    }
+
+    #progressparent {
+        line-height: 2em;
+    }
+
+    #login_input_modal_page
+    ,#serial_input_modal_page
+    ,#level_input_modal_page {
+        font-size:2.5em;
+    }
+
+    #login_text01                    
+    ,#login_footer
+    {
+        font-size:.5em;
+    }
+
+    .leftbutton
+    {
+        font-size:1.5em;
+    }
+
+    .content {
+        font-size:1.5em;
+    }
+
+    .maintitletxt,
+    .sentences,
+    .singletab {
+        font-size:1.3em;
+    }
+
+    .lboardrow li {
+        line-height:53px;
+    }
+
+    .unitcellno {
+        font-size:7.5em;
+    }
+
+    .unitcellday {
+        font-size: 2.2em;
+    }
+
+    .playercellno {
+        font-size:4.5em;
+    }
+
+    .playercellday {
+        font-size: 2.2em;
+    }
+
+    .unitcellcheck {
+        font-size: 1.2em;
+    }
+
+    div.jp-audio {
+        font-size:2em !important;
+    }
+}

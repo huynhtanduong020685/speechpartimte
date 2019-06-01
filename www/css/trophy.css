@@ -1,0 +1,12 @@
+#trophy_page {
+	position:absolute;
+	width:100%;
+}
+#trophy_page .item_page > div {clear:both; z-index:50; margin-left: 0; margin-top: 0%;}
+#trophy_page #inner_page {
+    margin-top:5% !important;
+}
+.trophy_icon {
+	padding: 0 !important;
+	margin-top:3.5%;
+}
